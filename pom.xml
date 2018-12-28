@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 
-	<name>OSGI Spring Boot Demo</name>
+	<name>Scan works OSGI Spring Boot Demo</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -39,6 +39,15 @@
 			<artifactId>spring-boot-starter-jetty</artifactId>
 		</dependency>
 
+<!-- https://mvnrepository.com/artifact/org.springframework.osgi/spring-osgi-io -->
+<dependency>
+    <groupId>org.springframework.osgi</groupId>
+    <artifactId>spring-osgi-io</artifactId>
+    <version>1.2.1</version>
+</dependency>
+		
+		
+		
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.core</artifactId>
