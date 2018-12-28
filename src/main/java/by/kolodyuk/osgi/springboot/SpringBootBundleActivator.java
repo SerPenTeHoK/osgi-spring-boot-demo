@@ -11,19 +11,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import org.springframework.osgi.io.OsgiBundleResourceLoader;
 import org.springframework.osgi.io.OsgiBundleResourcePatternResolver;
-//import org.eclipse.core.runtime.FileLocator; 
 
 
-/*
-@EnableAutoConfiguration
-@SpringBootApplication
-@ImportResource("classpath:spring-config.xml")
-*/
-//@Configuration
-//@ComponentScan("classpath*:by.kolodyuk.osgi.springboot.controller")
-//@EnableAutoConfiguration
 @SpringBootApplication
 public class SpringBootBundleActivator implements BundleActivator {
 
@@ -31,19 +21,12 @@ public class SpringBootBundleActivator implements BundleActivator {
 
     @Override
     public void start(BundleContext bundleContext) {
-		System.out.println("2. Start started");
-		/*try {
-			java.net.URL url = new java.net.URL("/"); 
-			String realPath = FileLocator.toFileURL(url).getPath(); 
-			System.out.println("path: " + realPath);
-		} catch (Throwable e){
-			System.out.println("e: " + e.getMessage());
-		}*/
-		
+        // Set context classloader
         Thread.currentThread().setContextClassLoader(this.getClass().getClassLoader());
-		OsgiBundleResourcePatternResolver rl = new OsgiBundleResourcePatternResolver(bundleContext.getBundle());
-        appContext = new SpringApplication(rl, SpringBootBundleActivator.class).run();
-		System.out.println("2. Start finished");
+        // trick to enable scan: get osgi resource pattern resolver
+        OsgiBundleResourcePatternResolver resourceResolver = new OsgiBundleResourcePatternResolver(bundleContext.getBundle());
+        // and prvide it to spring application
+        appContext = new SpringApplication(resourceResolver, SpringBootBundleActivator.class).run();
     }
 
     @Override

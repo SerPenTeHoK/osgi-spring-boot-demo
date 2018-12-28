@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SimpleController {
     @GetMapping("/simple")
     public String index() {
-        return "some text";
+        return "some text. Means that scan works. Finally.";
     }
 }
