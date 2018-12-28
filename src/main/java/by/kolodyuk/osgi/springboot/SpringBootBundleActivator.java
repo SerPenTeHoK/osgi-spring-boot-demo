@@ -33,8 +33,8 @@ public class SpringBootBundleActivator implements BundleActivator {
     public void stop(BundleContext bundleContext) {
         SpringApplication.exit(appContext, () -> 0);
     }
-	
-	public static void main(String[] args) {
+
+    public static void main(String[] args) {
         SpringApplication.run(SpringBootBundleActivator.class);
     }
 }
